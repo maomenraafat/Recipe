@@ -12,9 +12,10 @@ import { SidebarButtonComponent } from '../../../shared/components/sidebar-butto
   styleUrl: './recipe-detailes.component.scss',
 })
 export class RecipeDetailesComponent implements OnInit {
-  mealDetails!: Meal;
+  mealDetails!: Meal | null;
   ingredients: Array<{ ingredient: string; measure: string }> = [];
   mealId!: string;
+  error!: boolean;
   private readonly _mealsService = inject(MealsService);
   private route = inject(ActivatedRoute);
 
@@ -26,15 +27,41 @@ export class RecipeDetailesComponent implements OnInit {
       }
     });
   }
+  // getSpecificMeal(mealId: string) {
+  //   this._mealsService.getMealDetails(mealId).subscribe({
+  //     next: (data) => {
+  //       if (data.meals.length > 0) {
+  //         console.log(data.meals);
+  //         this.mealDetails = data.meals[0];
+  //         this.extractIngredients();
+  //         console.log(this.mealDetails);
+  //       } else if (data.meals === 'Invalid ID') {
+  //         console.log('hi');
+  //       }
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //     complete: () => {
+  //       console.log('complete');
+  //     },
+  //   });
+  // }
   getSpecificMeal(mealId: string) {
     this._mealsService.getMealDetails(mealId).subscribe({
       next: (data) => {
-        console.log(data.meals);
-        this.mealDetails = data.meals[0];
-        this.extractIngredients();
+        if (data.meals && data.meals.length > 0) {
+          this.mealDetails = data.meals[0];
+          this.extractIngredients();
+          this.error = false;
+        } else {
+          this.mealDetails = null;
+          this.error = true;
+        }
       },
       error: (err) => {
         console.log(err);
+        this.error = true;
       },
       complete: () => {
         console.log('complete');
@@ -43,14 +70,18 @@ export class RecipeDetailesComponent implements OnInit {
   }
 
   extractIngredients() {
-    this.ingredients = []; // Clear previous data
-    for (let i = 1; i <= 20; i++) {
-      const ingredient = this.mealDetails[`strIngredient${i}` as keyof Meal];
-      const measure = this.mealDetails[`strMeasure${i}` as keyof Meal];
-      if (ingredient && ingredient.trim()) {
-        this.ingredients.push({ ingredient, measure });
+    if (this.mealDetails) {
+      this.ingredients = [];
+      for (let i = 1; i <= 20; i++) {
+        const ingredient = this.mealDetails[`strIngredient${i}` as keyof Meal];
+        const measure = this.mealDetails[`strMeasure${i}` as keyof Meal];
+        if (ingredient && ingredient.trim()) {
+          this.ingredients.push({ ingredient, measure });
+        }
       }
+      // console.log(this.ingredients);
+    } else {
+      this.ingredients = [];
     }
-    console.log(this.ingredients); // Debugging output
   }
 }
