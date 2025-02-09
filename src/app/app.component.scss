@@ -1,0 +1,8 @@
+$bg-color: #f4f2ee;
+
+.main {
+  background-color: $bg-color;
+  @media (min-width: 640px) {
+    margin-left: 16rem;
+  }
+}

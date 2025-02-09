@@ -1,0 +1,104 @@
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: #{$property} #{$duration} ease-in-out;
+}
+
+.sidebar {
+  width: 16rem; // 64
+  height: 100vh;
+  background-color: #f9fafb; // gray-50
+  position: fixed;
+  top: 0;
+  left: -120%;
+  @include transition();
+
+  &.open {
+    left: 0;
+    z-index: 55;
+  }
+  @media (min-width: 640px) {
+    left: 0;
+  }
+
+  .sidebar-content {
+    height: 100%;
+    padding: 1rem; // py-4 px-3
+
+    .siderbarCloseBtn {
+      display: block;
+      margin-left: auto;
+      @media (min-width: 640px) {
+        display: none;
+      }
+
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .logo-container {
+    .logo {
+      width: 18rem; // w-72
+    }
+  }
+
+  .nav-list {
+    margin-top: 1.5rem; // mt-6
+    font-weight: 500; // font-medium
+    list-style: none;
+    padding: 0;
+
+    .nav-item {
+      padding: 0.5rem 1rem; // py-2 px-4
+      margin-bottom: 1.5rem; // mb-6
+      border-radius: 0.75rem; // rounded-xl
+      display: flex;
+      align-items: center;
+      transition: all 0.1s;
+      cursor: pointer;
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: #fff7ed 0 20px 25px -5px;
+      }
+
+      &.active {
+        background-color: #f29724;
+        box-shadow: 0 15px 25px -5px rgba(251, 146, 60, 0.5); // shadow-orange-300
+
+        &:hover {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .nav-link {
+          color: white;
+
+          .nav-text {
+            font-size: 1.125rem; // text-[18px]
+            font-weight: 600; // font-semibold
+            margin-left: 0.75rem; // ms-3
+          }
+        }
+      }
+
+      &:not(.active) {
+        background-color: white;
+        border: 1px solid rgb(209, 213, 219); // border-gray-200
+        .nav-link {
+          color: black;
+
+          .nav-text {
+            font-size: 1.125rem; // text-[18px]
+            margin-left: 0.75rem; // ms-3
+          }
+        }
+      }
+    }
+  }
+}

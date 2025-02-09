@@ -1,0 +1,209 @@
+h1 {
+  font-family: "Pacifico", serif;
+}
+
+/***********************************
+ * SCSS Variables
+ ***********************************/
+$bg-color: #f4f2ee;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-700: #374151;
+$red-600: #dc2626;
+$emerald-600: #059669;
+$emerald-700: #047857;
+$accent-color: #f29724;
+$white: #fff;
+$black: #000;
+$font-family-base: cursive, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+/***********************************
+  * Mixins
+  ***********************************/
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: #{$property} #{$duration} ease-in-out;
+}
+
+/***********************************
+  * Main Layout
+  ***********************************/
+.detail-page {
+  padding: 1rem 1.5rem;
+  min-height: 100vh;
+
+  .detail-container {
+    /* Equivalent of container p-4 */
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: $font-family-base;
+
+    /* The main conditional content area */
+    .detail-layout {
+      // Replaces: "flex gap-4 flex-col lg:flex-row"
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      /* On large screens (1024px+), row layout */
+      @media (min-width: 1024px) {
+        flex-direction: row;
+      }
+
+      .detail-left {
+        // Replaces: "lg:w-2/3"
+        width: 100%;
+
+        @media (min-width: 1024px) {
+          width: 66.6667%;
+        }
+
+        .detail-title {
+          /* Replaces: text-5xl font-semibold mb-4 */
+          font-size: 3rem; // ~ text-5xl
+          font-weight: 600;
+          margin-bottom: 1rem;
+        }
+
+        /* Replaces: "grid gap-4 items-stretch lg:grid-cols-2" */
+        .info-grid {
+          display: grid;
+          gap: 1rem;
+          align-items: stretch;
+
+          @media (min-width: 1024px) {
+            grid-template-columns: 1fr 1fr;
+          }
+
+          .info-left {
+            .detail-img {
+              /* Replaces: "w-full rounded-2xl mb-8" */
+              width: 100%;
+              border-radius: 0.75rem;
+              margin-bottom: 2rem;
+            }
+
+            .external-links {
+              /* Replaces: "flex gap-4 justify-center" */
+              display: flex;
+              gap: 1rem;
+              justify-content: center;
+
+              // YouTube link
+              .youtube-link {
+                background-color: $red-600;
+                border-radius: 0.5rem;
+                padding: 0.5rem 1rem;
+                color: $white;
+
+                .link-content {
+                  display: flex;
+                  gap: 0.5rem;
+                  align-items: center;
+                  justify-content: center;
+                  text-decoration: none;
+                  color: $white;
+                  @include transition();
+                }
+              }
+
+              // Source link
+              .source-link {
+                background-color: $emerald-600;
+                border-radius: 0.5rem;
+                padding: 0.5rem 1rem;
+                color: $white;
+
+                .link-content {
+                  display: flex;
+                  gap: 0.5rem;
+                  align-items: center;
+                  justify-content: center;
+                  text-decoration: none;
+                  color: $white;
+                  @include transition();
+                }
+              }
+            }
+          }
+
+          .meal-instructions {
+            // Just a paragraph style
+            line-height: 1.6;
+          }
+        }
+      }
+
+      .detail-right {
+        // Replaces: "lg:w-1/3 p-4"
+        width: 100%;
+        padding: 1rem;
+
+        @media (min-width: 1024px) {
+          width: 33.3333%;
+        }
+
+        .ingredients-card {
+          background-color: $white;
+          border-radius: 0.75rem;
+          padding: 1rem;
+
+          .ingredients-title {
+            /* Replaces: text-2xl font-semibold mb-4 border-b-4 p-2 */
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-bottom: 4px solid $gray-300;
+            padding: 0.5rem;
+          }
+
+          @for $i from 1 through 1 {
+            // Just to demonstrate you could nest loops or styles if needed
+          }
+
+          .ingredient-item {
+            /* Replaces: "flex flex-wrap justify-between p-2 border-b-2
+                last-of-type:border-b-0" */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0.5rem;
+            border-bottom: 2px solid $gray-200;
+
+            &:last-of-type {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+
+    /***********************************
+      * "else" Content
+      ***********************************/
+    .not-found {
+      /* Replaces: text-8xl text-[#f29724] */
+      font-size: 4rem;
+      color: $accent-color;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .back-home {
+      /* Replaces: "bg-green-500 rounded-3xl p-4 mt-6 text-white" */
+      background-color: $emerald-600;
+      border-radius: 1.5rem;
+      padding: 1rem 2rem;
+      margin-top: 1.5rem;
+      color: $white;
+      display: inline-block;
+      text-decoration: none;
+      @include transition();
+
+      &:hover {
+        background-color: $emerald-700;
+      }
+    }
+  }
+}

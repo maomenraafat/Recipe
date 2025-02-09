@@ -1,0 +1,17 @@
+.notfound-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  .notfound-img {
+    width: 75%;
+  }
+  .home-btn {
+    background-color: #22c55e;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    color: white;
+  }
+}
