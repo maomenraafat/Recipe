@@ -10,12 +10,13 @@ export const routes: Routes = [
   {
     path: 'category/:categoryName',
     component: HomeComponent,
-    data: { renderMode: 'fullPage' },
-  }, // Dynamic category route
+    // Explicitly disabling prerendering for this route
+    data: { prerender: false }, // Add this line to disable prerendering
+  },
   {
     path: 'mealDetailes/:mealId',
     component: RecipeDetailesComponent,
-    data: { renderMode: 'fullPage' },
+    data: { prerender: false }, // Add this line to disable prerendering
   },
   { path: '**', component: NotfoundComponent },
 ];
