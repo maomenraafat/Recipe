@@ -6,7 +6,7 @@ import { NotfoundComponent } from './features/pages/notfound/notfound.component'
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'category/:categoryName', component: HomeComponent }, 
+  { path: 'category/:categoryName', component: HomeComponent },
   { path: 'mealDetailes/:mealId', component: RecipeDetailesComponent },
   { path: '**', component: NotfoundComponent },
 ];
