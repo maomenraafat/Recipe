@@ -6,7 +6,7 @@ import { Meal } from '../../../shared/interfaces/meal';
 import { NgClass } from '@angular/common';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarService } from '../../../shared/services/sidebar/sidebar.service';
-import { SidebarButtonComponent } from "../../../shared/components/sidebar-button/sidebar-button.component";
+import { SidebarButtonComponent } from '../../../shared/components/sidebar-button/sidebar-button.component';
 
 @Component({
   selector: 'app-home',
@@ -24,8 +24,6 @@ export class HomeComponent implements OnInit {
   // text(name: string): void {
   //   console.log(name);
   // }
-
- 
 
   private readonly _categoriesService = inject(CategoriesService);
   private readonly _mealsService = inject(MealsService);
