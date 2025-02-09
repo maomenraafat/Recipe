@@ -7,7 +7,15 @@ import { NotfoundComponent } from './features/pages/notfound/notfound.component'
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'category/:categoryName', component: HomeComponent }, // Dynamic category route
-  { path: 'mealDetailes/:mealId', component: RecipeDetailesComponent },
+  {
+    path: 'category/:categoryName',
+    component: HomeComponent,
+    data: { renderMode: 'fullPage' },
+  }, // Dynamic category route
+  {
+    path: 'mealDetailes/:mealId',
+    component: RecipeDetailesComponent,
+    data: { renderMode: 'fullPage' },
+  },
   { path: '**', component: NotfoundComponent },
 ];
