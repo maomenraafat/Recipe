@@ -38,6 +38,23 @@ $emerald-700: #047857;
 /***********************************
   * Wrapper & Containers
   ***********************************/
+#tabs {
+  background-color: #f9fafb;
+  border-width: 1px;
+  border-color: #d1d5db;
+  color: #111827;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.5rem;
+  display: block;
+  width: 100%;
+  padding: 0.625rem;
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+}
+
 .home {
   padding: 1rem 1.5rem;
   min-height: 100vh;
@@ -62,10 +79,14 @@ $emerald-700: #047857;
     * Category List
     ***********************************/
   .categories-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-    gap: 1rem;
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
 
     .category-item {
       margin-right: 0.5rem;

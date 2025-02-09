@@ -7,10 +7,17 @@ import { NgClass } from '@angular/common';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarService } from '../../../shared/services/sidebar/sidebar.service';
 import { SidebarButtonComponent } from '../../../shared/components/sidebar-button/sidebar-button.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [NgClass, RouterLink, RouterLinkActive, SidebarButtonComponent],
+  imports: [
+    NgClass,
+    RouterLink,
+    RouterLinkActive,
+    SidebarButtonComponent,
+    FormsModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -89,5 +96,11 @@ export class HomeComponent implements OnInit {
         console.log('complete');
       },
     });
+  }
+
+  onCategoryChange() {
+    if (this.selectedCategory) {
+      this.getMealsByCategories(this.selectedCategory);
+    }
   }
 }

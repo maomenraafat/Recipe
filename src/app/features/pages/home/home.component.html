@@ -1,10 +1,28 @@
-
 <section class="home">
   <app-sidebar-button></app-sidebar-button>
 
   <div class="custom-container"></div>
 
   <h1 class="main-title">Learn, Cook, Eat Your Food</h1>
+
+  <select
+    id="tabs"
+    class="focus:ring-blue-500 focus:border-blue-500"
+    id="tabs"
+    class="focus:ring-blue-500 focus:border-blue-500"
+    [(ngModel)]="selectedCategory"
+    (change)="onCategoryChange()"
+  >
+    @for (category of categories; track $index) {
+
+    <option
+      [routerLink]="'/category/' + category.strCategory"
+      [value]="category.strCategory"
+    >
+      {{ category.strCategory }}
+    </option>
+    }
+  </select>
 
   <ul class="categories-list">
     <li class="category-item">
